@@ -18,20 +18,23 @@ def menu():
 def clear():
     return os.system('cls')
 def receber_valores():
-    try:
-        float_a = float(input("Digite o primeiro valor: "))
-        float_b = float(input("Digite o segundo valor: "))
-        return float_a,float_b
-    except ValueError:
-        print("Digite apenas números reais.")
+    while True:
+        try:
+            float_a = float(input("Digite o primeiro valor: "))
+            float_b = float(input("Digite o segundo valor: "))
+            return float_a,float_b
+        except ValueError:
+            print("Digite apenas números reais.")
 
 while True:
     try:
+        clear()
         menu()
         try:
             seletor = int(input("Digite aqui:"))
         except ValueError:
             print("Digite um valor válido.")
+            input("Pressione ENTER para continuar...")
             continue
         match seletor:
             case 1:
@@ -39,37 +42,31 @@ while True:
                 resultado = soma(float_a,float_b)
                 clear()
                 print(f"{float_a} + {float_b} = {resultado}")
-                input("Pressione enter para continuar.")
             case 2:
                 float_a, float_b = receber_valores()
                 resultado = sub(float_a,float_b)
                 clear()
                 print(f"{float_a} - {float_b} = {resultado}")
-                input("Pressione enter para continuar.")
             case 3:
                 float_a, float_b = receber_valores()
                 resultado = mult(float_a,float_b)
                 clear()
                 print(f"{float_a} x {float_b} = {resultado}")
-                input("Pressione enter para continuar.")
             case 4:
-                try:
-                    float_a, float_b = receber_valores()
+                float_a, float_b = receber_valores()
+                try:                   
                     resultado = divi(float_a,float_b)
+                    clear()
+                    print(f"{float_a} / {float_b} = {resultado}")
                 except ZeroDivisionError:
-                    print("Divisão por 0 não é aceita!")
-                    input("Pressione enter para continuar.")
-                    continue 
-                clear()
-                print(f"{float_a} / {float_b} = {resultado}")
-                input("Pressione enter para continuar.")
-                continue       
+                    print("Divisão por 0 não é aceita!")       
             case 0:
                 break 
             case _:
-                print("Digite algo válido, no contexto do programa.")
-                input("pressione enter para continuar: ")
-                continue
+                print("Opção inválida. Escolha um número entre 0 e 4.")
+
+        input("Pressione ENTER para continuar...")
+
     except Exception as e:
         print(f"Erro inesperado {e}")
-        input("Pressione enter para continuar...")            
+        input("Pressione enter para continuar...")           
