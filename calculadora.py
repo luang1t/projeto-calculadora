@@ -13,7 +13,8 @@ def menu():
     print("""1 - SOMA
 2 - SUBTRAÇÃO
 3 - MULTIPLICAÇÃO
-4 - DIVISÂO""")
+4 - DIVISÂO
+0 - SAIR""")
     print('='*44)
 def clear():
     return os.system('cls')
@@ -24,6 +25,7 @@ def receber_valores():
             float_b = float(input("Digite o segundo valor: "))
             return float_a,float_b
         except ValueError:
+            clear()
             print("Digite apenas números reais.")
 
 while True:
@@ -33,6 +35,7 @@ while True:
         try:
             seletor = int(input("Digite aqui:"))
         except ValueError:
+            clear()
             print("Digite um valor válido.")
             input("Pressione ENTER para continuar...")
             continue
